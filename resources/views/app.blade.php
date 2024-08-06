@@ -5,3 +5,6 @@
 @section('body')
     @yield('content')
 @endsection
+@section('opt-script')
+    @yield('script')
+@endsection

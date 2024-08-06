@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Charts\SalesDailyChart;
 use App\Services\GoogleSheetsService;
-use marineusde\LarapexCharts\Charts\BarChart;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
-class DashboardController extends Controller
+class SalesmanController extends Controller
 {
     protected $googleSheets;
 
@@ -47,21 +46,10 @@ class DashboardController extends Controller
         $currentPageItems = array_slice($salesCharts, ($currPage - 1) * 1, 1);
 
         $paginatedCharts = new LengthAwarePaginator($currentPageItems, 25, 1, [
-            'path' => $request->url(),
+            'path' => url('/salesman'),
             'query' => $request->query(),
         ]);
 
-        // We have to format the data somehow so that it could be processed like this :
-        // $chart = (new BarChart)
-        //     ->setTitle('Sales Data by Product Type')
-        //     ->setSubtitle('Each color represents a different product')
-        //     ->addData('Product A', [10, 0, 10, 0])
-        //     ->addData('Product B', [20, 0, 5, 10])
-        //     ->addData('Product C', [0, 30, 15, 5])
-        //     ->setXAxis(['p1', 'p2', 'p3', 'p4'])
-        //     ->setColors(['#FF5733', '#33FF57', '#3357FF'])
-        //     ->setStacked(true);
-
-        return view('pages.dashboard', ['charts' => $paginatedCharts, 'currentPage' => 'dashboard']);
+        return view('pages.salesman', ['charts' => $paginatedCharts, 'currentPage' => 'salesman']);
     }
 }
