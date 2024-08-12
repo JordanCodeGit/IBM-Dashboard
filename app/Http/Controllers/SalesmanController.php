@@ -30,26 +30,34 @@ class SalesmanController extends Controller
         $salesData = $this->googleSheets->getSelectedColumnsGrouped($sheet.$range, $columns);
         // return response()->json($salesData);
 
-        $salesCharts = [];
-        for ($i = 0; $i < 25; $i++) {
-            $temp = SalesDailyChart::build();
-            $temp
-            ->setSubtitle('Awikwok'.$i)
-            ->setStacked(true)
-            ->addData('Money', $salesData[5])
-            ->addData('Money 2', $salesData[10])
-            ->setXAxis($salesData[0]);
-            array_push($salesCharts, $temp);
-        }
+        $temp = SalesDailyChart::build();
+        $temp
+        ->setSubtitle('Awikwok')
+        ->setStacked(true)
+        ->addData('Money', $salesData[5])
+        ->addData('Money 2', $salesData[10])
+        ->setXAxis($salesData[0]);
 
-        $currPage = Paginator::resolveCurrentPage();
-        $currentPageItems = array_slice($salesCharts, ($currPage - 1) * 1, 1);
+        // $salesCharts = [];
+        // for ($i = 0; $i < 25; $i++) {
+        //     $temp = SalesDailyChart::build();
+        //     $temp
+        //     ->setSubtitle('Awikwok'.$i)
+        //     ->setStacked(true)
+        //     ->addData('Money', $salesData[5])
+        //     ->addData('Money 2', $salesData[10])
+        //     ->setXAxis($salesData[0]);
+        //     array_push($salesCharts, $temp);
+        // }
 
-        $paginatedCharts = new LengthAwarePaginator($currentPageItems, 25, 1, [
-            'path' => url('/salesman'),
-            'query' => $request->query(),
-        ]);
+        // $currPage = Paginator::resolveCurrentPage();
+        // $currentPageItems = array_slice($salesCharts, ($currPage - 1) * 1, 1);
 
-        return view('pages.salesman', ['charts' => $paginatedCharts, 'currentPage' => 'salesman']);
+        // $paginatedCharts = new LengthAwarePaginator($currentPageItems, 25, 1, [
+        //     'path' => url('/salesman'),
+        //     'query' => $request->query(),
+        // ]);
+
+        return view('pages.salesman', ['charts' => $temp, 'currentPage' => 'salesman']);
     }
 }

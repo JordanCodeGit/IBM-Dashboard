@@ -21,8 +21,8 @@ class GoogleSheetsService
     public function getSpreadsheetValues($range)
     {
         $spreadsheetId = config('google-sheets.spreadsheet_id');
-        $response = $this->service->spreadsheets_values->get($spreadsheetId, $range);
-        return $response->getValues();
+        $response = $this->service->spreadsheets_values->get($spreadsheetId, $range)->getValues();
+        return $response;
     }
 
     public function getSelectedColumns($range, $columns)

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <h1>Selamat datang, [nama]</h1>
-    {!! $charts[0]->container() !!}
+    {!! $chart->container() !!}
     <h1>Sales Individu</h1>
     <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">Testimonial</h6>
@@ -20,17 +20,8 @@
             </div> --}}
         </div>
     </div>
-    {{ $charts->onEachSide(1)->links() }}
-    <div class="w-100">
-        {{ $charts->links() }}
-    </div>
 @endsection
 @section('script')
-    <script src="{{ $charts[0]->cdn() }}"></script>
-    {{ $charts[0]->script() }}
-    {{-- @for ($i = 1; $i < 25; $i++)
-        <script src="{{ $charts[$i]->cdn() }}"></script>
-        {{ $charts[$i]->script() }}
-    @endfor --}}
-    {{-- <script src="{{ asset('js/dashboard.js') }}"></script> --}}
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
 @endsection
