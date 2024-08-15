@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SpreadsheetJob;
-use App\Services\GoogleSheetsService;
+use App\Models\Settings;
 use marineusde\LarapexCharts\Charts\BarChart;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-
     public function index(Request $request) {
-        $job = new SpreadsheetJob(true);
-        dispatch($job);
+        $runSetup = Settings::where('key', 'RUN_SETUP')->first();
+
+        if (!$runSetup) {
+            $job = new SpreadsheetJob(true);
+            dispatch($job);
+            Settings::create([
+                'key' => 'RUN_SETUP',
+                'value' => 'true'
+            ]);
+        }
         // return response()->json($this->getSalesmanData(true));
 
         // $salesData = $this->getSalesmanData(true);

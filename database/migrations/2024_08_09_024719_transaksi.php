@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id('id_transaksi');
             $table->string('kode_transaksi')->unique();
-            $table->foreignId('id_salesman');
+            $table->unsignedBigInteger('id_salesman');
+            $table->foreign('id_salesman', 't_id_salesman')->references('id_salesman')->on('salesman');
             $table->datetime('tanggal');
         });
     }

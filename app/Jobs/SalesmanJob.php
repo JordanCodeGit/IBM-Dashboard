@@ -62,11 +62,12 @@ class SalesmanJob implements ShouldQueue
             ]);
 
             // Loops over the items that the salesman sold
-            $itemCount = 3;
+            $itemCount = 19;
             for ($j = 0; $j < $itemCount; $j++) {
                 $counter = 8 * $j;
                 // If there's no item left, stop the loop
                 if (!$this->data[$i][8 + $counter]) {
+                    print('loop over');
                     break;
                 }
                 // Get item by code

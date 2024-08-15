@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('transaksi_barang', function (Blueprint $table) {
             $table->id('id_transaksi_barang');
-            $table->foreignId('id_transaksi');
-            $table->foreignId('id_barang');
+            $table->unsignedBigInteger('id_transaksi');
+            $table->foreign('id_transaksi', 'tb_id_transaksi')->references('id_transaksi')->on('transaksi');
+            $table->unsignedBigInteger('id_barang');
+            $table->foreign('id_barang', 'tb_id_barang')->references('id_barang')->on('barang');
             $table->smallInteger('kuantitas')->unsigned();
             $table->boolean('negosiasi');
             $table->mediumInteger('harga_nego')->nullable()->unsigned();
