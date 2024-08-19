@@ -67,7 +67,6 @@ class SalesmanJob implements ShouldQueue
                 $counter = 8 * $j;
                 // If there's no item left, stop the loop
                 if (!$this->data[$i][8 + $counter]) {
-                    print('loop over');
                     break;
                 }
                 // Get item by code

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Settings;
 use App\Services\GoogleSheetsService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -62,5 +63,10 @@ class SpreadsheetJob implements ShouldQueue
             $job = new SalesmanJob($salesDataChunk[$i]);
             dispatch($job);
         }
+        $lastRowIndex = (count($salesDataChunk) - 1) * 1000 + count(end($salesDataChunk)) + 1;
+        Settings::create([
+            'key' => 'last_row',
+            'value' => (string) $lastRowIndex
+        ]);
     }
 }
