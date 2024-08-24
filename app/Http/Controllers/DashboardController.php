@@ -10,16 +10,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(Request $request) {
-        $runSetup = Settings::where('key', 'RUN_SETUP')->first();
-
-        if (!$runSetup) {
-            $job = new SpreadsheetJob(true);
-            dispatch($job);
-            Settings::create([
-                'key' => 'RUN_SETUP',
-                'value' => 'true'
-            ]);
-        }
         // return response()->json($this->getSalesmanData(true));
 
         // $salesData = $this->getSalesmanData(true);
@@ -32,6 +22,13 @@ class DashboardController extends Controller
         // ->addData('Money', $salesData[5])
         // ->addData('Money 2', $salesData[10])
         // ->setXAxis($salesData[0]);
+
+        /*=========================================
+
+        This part is used for debugging. Getting
+        data,
+
+        =========================================*/
 
 
         // We have to format the data somehow so that it could be processed like this :
