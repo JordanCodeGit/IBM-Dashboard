@@ -47,16 +47,21 @@ class SpreadsheetJob implements ShouldQueue
 
         $range = 'A2:FL';
 
-        if ($this->all) {
-            $salesData = $googleSheetsService->getSpreadsheetValues($sheet.$range);
-        }
-        else {
-            if ($this->grouped) {
-                $salesData = $googleSheetsService->getSelectedColumnsGrouped($sheet.$range, $columns);
+        try{
+            if ($this->all) {
+                $salesData = $googleSheetsService->getSpreadsheetValues($sheet.$range);
             }
             else {
-                $salesData = $googleSheetsService->getSelectedColumns($sheet.$range, $columns);
+                if ($this->grouped) {
+                    $salesData = $googleSheetsService->getSelectedColumnsGrouped($sheet.$range, $columns);
+                }
+                else {
+                    $salesData = $googleSheetsService->getSelectedColumns($sheet.$range, $columns);
+                }
             }
+        }
+        catch (Exception $e) {
+            print($e);
         }
 
         $salesDataChunk = array_chunk($salesData, 50);

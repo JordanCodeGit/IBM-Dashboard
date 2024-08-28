@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Google\Client as GoogleClient;
 use Google\Service\Sheets as GoogleServiceSheets;
+use GuzzleHttp\Client as GuzzleClient;
 
 class GoogleSheetsService
 {
@@ -12,9 +13,18 @@ class GoogleSheetsService
 
     public function __construct()
     {
+        // Create a custom Guzzle client with SSL verification disabled
+        $guzzleClient = new GuzzleClient([
+            'verify' => false, // Disable SSL certificate verification
+        ]);
+
+        // Initialize the Google Client with the custom Guzzle client
         $this->client = new GoogleClient();
+        $this->client->setHttpClient($guzzleClient); // Set the custom Guzzle client
         $this->client->setAuthConfig(config('google-sheets.credentials_path'));
         $this->client->addScope(GoogleServiceSheets::SPREADSHEETS);
+
+        // Initialize the Google Sheets service
         $this->service = new GoogleServiceSheets($this->client);
     }
 
