@@ -6,6 +6,7 @@ use App\Jobs\SpreadsheetJob;
 use App\Models\Settings;
 use marineusde\LarapexCharts\Charts\BarChart;
 use Illuminate\Http\Request;
+use marineusde\LarapexCharts\Options\XAxisOption;
 
 class DashboardController extends Controller
 {
@@ -38,7 +39,7 @@ class DashboardController extends Controller
             ->addData('Product A', [10, 0, 10, 0])
             ->addData('Product B', [20, 0, 5, 10])
             ->addData('Product C', [0, 30, 15, 5])
-            ->setXAxis(['p1', 'p2', 'p3', 'p4'])
+            ->setXAxisOption(new XAxisOption(['p1', 'p2', 'p3', 'p4']))
             ->setColors(['#FF5733', '#33FF57', '#3357FF'])
             ->setStacked(true);
 
