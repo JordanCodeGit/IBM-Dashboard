@@ -64,7 +64,7 @@ class SpreadsheetJob implements ShouldQueue
             print($e);
         }
 
-        $salesDataChunk = array_chunk($salesData, 50);
+        $salesDataChunk = array_chunk($salesData, 100);
         for ($i = 0; $i < count($salesDataChunk); $i++) {
             $job = new SalesmanJob($salesDataChunk[$i]);
             dispatch($job);
