@@ -24,7 +24,7 @@ class DebugController extends Controller
             ]);
         }
 
-        return redirect('/')->with('type', 'fetch');
+        return redirect('/settings')->with(['type' => 'fetch']);
     }
 
     public function deleteAll() {
@@ -34,12 +34,12 @@ class DebugController extends Controller
         Salesman::query()->delete();
         Settings::query()->delete();
 
-        return redirect('/')->with(['type' => 'delete']);
+        return redirect('/settings')->with(['type' => 'delete']);
     }
 
     public function resetSchema() {
         Artisan::call('migrate:fresh');
 
-        return redirect('/')->with(['type' => 'reset']);
+        return redirect('/settings')->with(['type' => 'reset']);
     }
 }

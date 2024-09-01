@@ -11,19 +11,6 @@ use marineusde\LarapexCharts\Options\XAxisOption;
 class DashboardController extends Controller
 {
     public function index(Request $request) {
-        // return response()->json($this->getSalesmanData(true));
-
-        // $salesData = $this->getSalesmanData(true);
-        // // return response()->json($salesData);
-
-        // $salesChart = SalesDailyChart::build();
-        // $salesChart
-        // ->setSubtitle('Awikwok')
-        // ->setStacked(true)
-        // ->addData('Money', $salesData[5])
-        // ->addData('Money 2', $salesData[10])
-        // ->setXAxis($salesData[0]);
-
         /*=========================================
 
         This part is used for debugging. Getting

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DebugController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\SalesmanController;
 use App\Http\Controllers\StorageController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/driver', [DriverController::class, 'index']);
     Route::get('/storage', [StorageController::class, 'index']);
     Route::get('/salesman', [SalesmanController::class, 'index']);
+    Route::get('/help', [MiscellaneousController::class, 'help']);
+    Route::get('/settings', [MiscellaneousController::class, 'settings']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // API Routes

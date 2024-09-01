@@ -3,16 +3,5 @@
     Salesman Summary
 @endsection
 @section('content')
-    <h1>Selamat datang, [nama]</h1>
-    {!! $charts->container() !!}
-    {{-- {!! $charts[0]->container() !!}
-    <div class="w-10">
-        {{ $charts->links() }}
-    </div> --}}
-@endsection
-@section('script')
-    <script src="{{ $charts->cdn() }}"></script>
-    {{ $charts->script() }}
-    {{-- <script src="{{ $charts[0]->cdn() }}"></script>
-    {{ $charts[0]->script() }} --}}
+    @include('components.maintenance', ['message' => 'This page is under development.'])
 @endsection
