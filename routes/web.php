@@ -7,15 +7,20 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\SalesmanController;
-use App\Http\Controllers\StorageController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 // Protected Web Routes
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/driver', [DriverController::class, 'index']);
-    Route::get('/storage', [StorageController::class, 'index']);
+    Route::get('/warehouse', [WarehouseController::class, 'index']);
     Route::get('/salesman', [SalesmanController::class, 'index']);
+    Route::get('/salesman/daily', [SalesmanController::class, 'index']);
+    Route::get('/salesman/monthly', [SalesmanController::class, 'index']);
+    Route::get('/salesman/{id}', [SalesmanController::class, 'index']);
+    Route::get('/salesman/{id}/daily', [SalesmanController::class, 'index']);
+    Route::get('/salesman/{id}/monthly', [SalesmanController::class, 'index']);
     Route::get('/help', [MiscellaneousController::class, 'help']);
     Route::get('/settings', [MiscellaneousController::class, 'settings']);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

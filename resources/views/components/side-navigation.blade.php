@@ -7,10 +7,10 @@
         <div class="navbar-nav w-100">
             <a href="/" class="nav-item nav-link {{ $currentPage == 'dashboard' ? 'active' : ''}}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ $currentPage == 'salesman' || $currentPage == 'storage' || $currentPage == 'driver' ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="bi bi-bar-chart-line-fill me-2"></i>Statistics</a>
+                <a href="#" class="nav-link dropdown-toggle {{ $currentPage == 'salesman' || $currentPage == 'warehouse' || $currentPage == 'driver' ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="bi bi-bar-chart-line-fill me-2"></i>Statistics</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/salesman" class="dropdown-item {{ $currentPage == 'salesman' ? 'active' : ''}}">Salesman</a>
-                    <a href="/storage" class="dropdown-item {{ $currentPage == 'storage' ? 'active' : ''}}">Storage</a>
+                    <a href="/warehouse" class="dropdown-item {{ $currentPage == 'warehouse' ? 'active' : ''}}">Warehouse</a>
                     <a href="/driver" class="dropdown-item {{ $currentPage == 'driver' ? 'active' : ''}}">Driver</a>
                 </div>
             </div>

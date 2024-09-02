@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SpreadsheetJob;
-use App\Models\Settings;
 use marineusde\LarapexCharts\Charts\BarChart;
 use Illuminate\Http\Request;
 use marineusde\LarapexCharts\Options\XAxisOption;

@@ -1,6 +1,6 @@
 @extends('app')
 @section('page-title')
-    Storage Summary
+    Warehouse Summary
 @endsection
 @section('content')
     @include('components.maintenance', ['message' => 'This page is under development.'])
