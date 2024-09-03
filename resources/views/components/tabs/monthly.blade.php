@@ -1,25 +1,22 @@
 <h3>Monthly Sales Data</h3>
-@if (count($monthly) == 0)
-    <p class="text-secondary">There is no new data today.</p>
+@if ($count == 0)
+    <p class="text-secondary">There is no new data this month.</p>
 @endif
-{{-- @php
-    if (count($monthly) == 0) {
-        // Find the Transaksi with the most Transaksi_Barang
-        $maxTransaksi = $monthly->sortByDesc(fn($t) => $t->transaksi_barang->count())->first();
+@php
+    // Find the Transaksi with the most Transaksi_Barang
+    $maxTransaksi = $count ? $monthly->sortByDesc(fn($t) => $t->transaksi_barang->count())->first() : null;
 
-        // Get the maximum count of Transaksi_Barang
-        $maxCount = $maxTransaksi->transaksi_barang->count() : 0;
-        $width = 100 * $maxCount > 0 ? 100 * $maxCount : 100;
-    }
-@endphp --}}
+    // Get the maximum count of Transaksi_Barang
+    $maxCount = $maxTransaksi ? $maxTransaksi->transaksi_barang->count() : 0;
+@endphp
 <div class="table-responsive mb-4">
-    <table class="table table-hover" style="width: 1300vw">
+    <table class="table table-hover" style="width: {{$maxCount == 0 ? 'initial' : (100 * $maxCount).'vw'}}">
         <thead class="table-primary">
             <tr>
                 <th scope="col">ID Transaksi</th>
                 <th scope="col">Salesman</th>
                 <th scope="col">Tanggal</th>
-                @for ($i = 1; $i <= 20; $i++)
+                @for ($i = 1; $i <= $maxCount; $i++)
                     <th scope="col">Kode Barang {{$i}}</th>
                     <th scope="col">Nama Barang {{$i}}</th>
                     <th scope="col">Kuantitas Barang {{$i}}</th>

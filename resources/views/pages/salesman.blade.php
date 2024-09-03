@@ -15,13 +15,13 @@
         </nav>
         <div class="tab-content pt-3" id="nav-tabContent">
             <div class="tab-pane fade {{ !request('tab') ? 'show active' : '' }}" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
-                @include('components.tabs.general', ['general' => $general])
+                @include('components.tabs.general', ['general' => $general, 'count' => count($general)])
             </div>
             <div class="tab-pane fade {{ request('tab') == 'daily' ? 'show active' : '' }}" id="nav-daily" role="tabpanel" aria-labelledby="nav-daily-tab">
-                @include('components.tabs.daily', ['daily' => $daily])
+                @include('components.tabs.daily', ['daily' => $daily, 'count' => count($daily)])
             </div>
             <div class="tab-pane fade {{ request('tab') == 'monthly' ? 'show active' : '' }}" id="nav-monthly" role="tabpanel" aria-labelledby="nav-monthly-tab">
-                @include('components.tabs.monthly', ['monthly' => $monthly])
+                @include('components.tabs.monthly', ['monthly' => $monthly, 'count' => count($monthly)])
             </div>
         </div>
     </div>
