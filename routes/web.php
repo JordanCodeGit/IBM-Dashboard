@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\APISalesmanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DebugController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\SalesmanController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +22,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/salesman/{id}/daily', [SalesmanController::class, 'index']);
     Route::get('/salesman/{id}/monthly', [SalesmanController::class, 'index']);
     Route::get('/help', [MiscellaneousController::class, 'help']);
-    Route::get('/settings', [MiscellaneousController::class, 'settings']);
+    Route::get('/settings', [SettingsController::class, 'index']);
+    Route::get('/settings/reset', [SettingsController::class, 'resetSchema'])->name('reset.all');
+    Route::get('/settings/delete/all', [SettingsController::class, 'deleteAll'])->name('delete.all');
+    Route::get('/settings/get/spreadsheet', [SettingsController::class, 'fetchAll'])->name('get.spreadsheet');
+    Route::get('/settings/delete/dashboard-url', [SettingsController::class, 'resetDashboardURL'])->name('reset.dashboard-url');
+    Route::post('/settings/update/dashboard-url', [SettingsController::class, 'updateDashboardURL'])->name('update.dashboard-url');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // API Routes
@@ -33,10 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/salesman/get/{id}/daily', [APISalesmanController::class, 'getBySalesmanIdDaily']);
     Route::get('/api/salesman/get/{id}/monthly', [APISalesmanController::class, 'getBySalesmanIdMonthly']);
 
-    // Debug Routes
-    Route::get('/setup/fetch', [DebugController::class, 'fetchAll'])->name('debug.fetch');
-    Route::get('/setup/delete', [DebugController::class, 'deleteAll'])->name('debug.delete');
-    Route::get('/setup/reset', [DebugController::class, 'resetSchema'])->name('debug.reset');
 });
 
 // Public Web Routes

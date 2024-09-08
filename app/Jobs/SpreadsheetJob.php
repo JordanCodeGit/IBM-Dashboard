@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Settings;
 use App\Services\GoogleSheetsService;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
@@ -47,7 +46,6 @@ class SpreadsheetJob implements ShouldQueue
 
         $range = 'A2:FL';
 
-        try{
             if ($this->all) {
                 $salesData = $googleSheetsService->getSpreadsheetValues($sheet.$range);
             }
@@ -59,10 +57,6 @@ class SpreadsheetJob implements ShouldQueue
                     $salesData = $googleSheetsService->getSelectedColumns($sheet.$range, $columns);
                 }
             }
-        }
-        catch (Exception $e) {
-            print($e);
-        }
 
         $salesDataChunk = array_chunk($salesData, 100);
         for ($i = 0; $i < count($salesDataChunk); $i++) {
@@ -73,7 +67,7 @@ class SpreadsheetJob implements ShouldQueue
         // $lastRowIndex = (count($salesDataChunk) - 1) * 1000 + count(end($salesDataChunk)) + 1;
         $lastRowIndex = count($salesData);
         Settings::create([
-            'key' => 'last_row',
+            'key' => 'LAST_ROW',
             'value' => (string) $lastRowIndex
         ]);
     }

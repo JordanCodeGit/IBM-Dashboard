@@ -4,24 +4,29 @@
 @endsection
 @section('content')
     <div class="container">
-        @session('type')
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @if (session('type') == 'fetch')
-                Data fetched successfully!
-            @elseif (session('type') == 'delete')
-                Data deleted successfully.
-            @elseif (session('type') == 'reset')
-                Database reset.
-            @endif
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        @session('message')
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{session('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endsession
         <h1>Settings</h1>
+        <hr>
+        <form action="{{route('update.dashboard-url')}}" method="POST">
+            <h3>Dashboard Link</h3>
+            <p>Change the link of the statistics that is going to be displayed on the dashboard page.</p>
+            @csrf
+            <input required type="url" class="form-control mb-3 w-50" name="url" placeholder="'https://lookerstudio.google.com/embed/reporting/...' or any other links." value="{{$dashboard ? $dashboard->value : ''}}">
+            <button class="btn btn-success" type="submit">Change link</button>
+            @if ($dashboard)
+                <a class="btn btn-outline-danger" href={{route('reset.dashboard-url')}}>Reset link</a>
+            @endif
+        </form>
         <hr>
         <section>
             <h3>Get Data</h3>
             <p>Get all data from spreadsheet. After pressing the button, don't forget to run `artisan queue:work`.</p>
-            <a class="btn btn-primary" href={{route('debug.fetch')}}>Get all data</a>
+            <a class="btn btn-primary" href={{route('get.spreadsheet')}}>Get all data</a>
         </section>
         <hr>
         <section>
@@ -42,7 +47,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No, go back.</button>
-                            <a class="btn btn-danger" href={{route('debug.delete')}}>Yes, delete all of the data</a>
+                            <a class="btn btn-danger" href={{route('delete.all')}}>Yes, delete all of the data</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +72,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No, go back.</button>
-                            <a class="btn btn-danger" href={{route('debug.reset')}}>Reset schema</a>
+                            <a class="btn btn-danger" href={{route('reset.all')}}>Reset schema</a>
                         </div>
                     </div>
                 </div>
