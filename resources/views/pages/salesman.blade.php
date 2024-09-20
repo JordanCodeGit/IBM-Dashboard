@@ -24,5 +24,7 @@
                 @include('components.tabs.monthly', ['monthly' => $monthly, 'count' => count($monthly)])
             </div>
         </div>
+        <h3>KPI Salesman</h3>
+        @include('components.tables.kpi', ['kpi' => $kpi])
     </div>
 @endsection

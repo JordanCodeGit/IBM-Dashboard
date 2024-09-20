@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Salesman;
+use App\Models\SalesmanPerformance;
 use App\Models\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,11 +17,15 @@ class SalesmanController extends Controller
         $generalData = Transaksi::orderBy('tanggal', 'asc')->with('salesman')->with('transaksi_barang.barang')->paginate(25, ['*'], 'general_page');
         $dailyData = Transaksi::where('tanggal', Carbon::today('Asia/Jakarta'))->orderBy('tanggal', 'asc')->with('salesman')->with('transaksi_barang.barang')->paginate(25, ['*'], 'daily_page');
         $monthlyData = Transaksi::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal', 'asc')->with('salesman')->with('transaksi_barang.barang')->paginate(25, ['*'], 'monthly_page');
+
+        $kpiData = SalesmanPerformance::with(['salesman', 'absensi', 'reguler', 'kategori', 'toko', 'penagihan'])->get();
+
         return view('pages.salesman', [
             'currentPage' => 'salesman',
             'general' => $generalData,
             'daily' => $dailyData,
-            'monthly' => $monthlyData
+            'monthly' => $monthlyData,
+            'kpi' => $kpiData
         ]);
     }
 }

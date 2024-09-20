@@ -22,4 +22,9 @@ class Salesman extends Model
     {
         return $this->hasMany(Transaksi::class, 'id_salesman', 'id_salesman');
     }
+
+    public function performa(): HasMany
+    {
+        return $this->hasMany(SalesmanPerformance::class, 'id_salesman', 'id_salesman');
+    }
 }

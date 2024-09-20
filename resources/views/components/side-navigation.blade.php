@@ -14,6 +14,12 @@
                     <a href="/driver" class="dropdown-item {{ $currentPage == 'driver' ? 'active' : ''}}">Driver</a>
                 </div>
             </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle {{ $currentPage == 'salesman-kpi' ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="bi bi-card-text me-2"></i>Forms</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/form/salesman-kpi" class="dropdown-item {{ $currentPage == 'salesman-kpi' ? 'active' : ''}}">Salesman KPI</a>
+                </div>
+            </div>
             <a href="/settings" class="nav-item nav-link {{ $currentPage == 'settings' ? 'active' : ''}}"><i class="bi bi-gear-fill me-2"></i>Settings</a>
             <a href="/help" class="nav-item nav-link {{ $currentPage == 'help' ? 'active' : ''}}"><i class="bi bi-book-half me-2"></i>Help & Guides</a>
         </div>

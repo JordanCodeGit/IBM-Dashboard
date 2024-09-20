@@ -6,6 +6,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\SalesmanController;
+use App\Http\Controllers\SalesmanKPIController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/salesman/{id}', [SalesmanController::class, 'index']);
     Route::get('/salesman/{id}/daily', [SalesmanController::class, 'index']);
     Route::get('/salesman/{id}/monthly', [SalesmanController::class, 'index']);
+    Route::get('/form/salesman-kpi', [SalesmanKPIController::class, 'index']);
+    Route::post('/form/salesman-kpi', [SalesmanKPIController::class, 'save']);
     Route::get('/help', [MiscellaneousController::class, 'help']);
     Route::get('/settings', [SettingsController::class, 'index']);
     Route::get('/settings/reset', [SettingsController::class, 'resetSchema'])->name('reset.all');
