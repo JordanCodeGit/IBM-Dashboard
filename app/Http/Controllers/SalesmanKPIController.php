@@ -19,9 +19,8 @@ class SalesmanKPIController extends Controller
         $kpi = KeyPerformanceIndex::create([
             'target' => $request[$input_name.'-target'],
             'pencapaian' => $request[$input_name.'-pencapaian'],
-            // 'persentase' => $request[$input_name.'-pencapaian']/$request[$input_name.'-target'],
+            'persentase' => $request[$input_name.'-pencapaian']/$request[$input_name.'-target'],
             // 'poin' => $request[$input_name.'-pencapaian']/$request[$input_name.'-target'] * $max_point,
-            'persentase' => $request[$input_name.'-persentase'],
             'poin' => $request[$input_name.'-poin'],
             'tipe_indeks' => $enum
         ]);
