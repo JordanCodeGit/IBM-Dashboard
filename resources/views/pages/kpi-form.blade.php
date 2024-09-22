@@ -11,7 +11,7 @@
             </div>
         @endsession
         <h1>Salesman Key Performance Index Form</h1>
-        <form action="/" method="POST">
+        <form action="{{route('kpi-save')}}" method="POST">
             @csrf
             <h5>Salesman</h5>
             <div class="form-floating mb-3 w-50">

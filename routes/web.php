@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/salesman/{id}/daily', [SalesmanController::class, 'index']);
     Route::get('/salesman/{id}/monthly', [SalesmanController::class, 'index']);
     Route::get('/form/salesman-kpi', [SalesmanKPIController::class, 'index']);
-    Route::post('/form/salesman-kpi', [SalesmanKPIController::class, 'save']);
+    Route::post('/form/salesman-kpi', [SalesmanKPIController::class, 'save'])->name('kpi-save');
     Route::get('/help', [MiscellaneousController::class, 'help']);
     Route::get('/settings', [SettingsController::class, 'index']);
     Route::get('/settings/reset', [SettingsController::class, 'resetSchema'])->name('reset.all');
