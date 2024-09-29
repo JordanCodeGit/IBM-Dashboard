@@ -16,6 +16,13 @@ class SalesmanKPIController extends Controller
     }
 
     private function kpi_save(Request $request, $input_name, $max_point, $enum) {
+        // $kpi = new KeyPerformanceIndex();
+        // $kpi->target = $request[$input_name.'-target'];
+        // $kpi->pencapaian = $request[$input_name.'-pencapaian'];
+        // $kpi->persentase = $kpi->target/$kpi->pencapaian;
+
+        // if ()
+
         $kpi = KeyPerformanceIndex::create([
             'target' => $request[$input_name.'-target'],
             'pencapaian' => $request[$input_name.'-pencapaian'],
